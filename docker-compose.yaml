@@ -1,0 +1,37 @@
+version: "3"
+services:
+  # unlike the backend app, we have to attach to container and edit code directly, recommend running the angular app natively in windows and connect to the backend docker container
+  react:
+    build: ./limited-lemonade-frontend
+    environment:
+      NODE_ENV: development
+    volumes:
+      - ./limited-lemonade-frontend:/code
+    expose:
+      - 3000
+    ports:
+      - "3000:3000"
+
+  # files persist via volume between host and container
+  django:
+    build: ./limited-lemonade-backend
+    volumes:
+      - ./limited-lemonade-backend:/code
+    ports:
+      - "8000:8000"
+
+  db:
+    image: mongo
+    expose:
+      - 27017
+    ports:
+      - "27017:27017"
+    restart: always
+    volumes: 
+      - mongo-data:/data/db
+    environment: 
+      MONGO_INITDB_ROOT_USERNAME: dev
+      MONGO_INITDB_ROOT_PASSWORD: dev
+    # entrypoint: ["/usr/bin/mongod", "--bind_ip_all", "--replSet", "rs0"]
+volumes:
+  mongo-data:
