@@ -1,0 +1,6 @@
+[submodule "limited-lemonade-frontend"]
+	path = limited-lemonade-frontend
+	url = git@github.com:Akaleonard/limited-lemonade-frontend.git
+[submodule "limited-lemonade-backend"]
+	path = limited-lemonade-backend
+	url = git@github.com:Akaleonard/limited-lemonade-backend.git
