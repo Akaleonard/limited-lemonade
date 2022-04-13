@@ -15,6 +15,8 @@ services:
   # files persist via volume between host and container
   django:
     build: ./limited-lemonade-backend
+    env_file:
+      - ./django.env
     volumes:
       - ./limited-lemonade-backend:/code
     ports:
@@ -29,9 +31,9 @@ services:
   #   ports:
   #     - "27017:27017"
   #   restart: always
-  #   volumes: 
+  #   volumes:
   #     - mongo-data:/data/db
-  #   environment: 
+  #   environment:
   #     MONGO_INITDB_ROOT_USERNAME: dev
   #     MONGO_INITDB_ROOT_PASSWORD: dev
   #   # entrypoint: ["/usr/bin/mongod", "--bind_ip_all", "--replSet", "rs0"]
