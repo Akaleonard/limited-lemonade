@@ -19,6 +19,7 @@ services:
       - ./django.env
     volumes:
       - ./limited-lemonade-backend:/code
+      - /root/.vscode-server/extensions
     ports:
       - "8000:8000"
     stdin_open: true
